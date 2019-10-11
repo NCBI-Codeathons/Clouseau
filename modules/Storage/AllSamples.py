@@ -7,7 +7,7 @@ from Storage import Chr
 class AllSamples:
     """
     This Class will contain all information about samples in VCF files
-    Beside that It willcontAin info about chromosomes
+    Beside that It will contain info about chromosomes
     """
     def __init__(self):
         self.sample_list = []
@@ -24,5 +24,8 @@ class AllSamples:
         if chr_name in self.chr_list:
             pass
         else:
-            my_chr = Chr.Chr(chr_name, position)
-            self.chr_list.append(my_chr)
+            chr_name = Chr.Chr(chr_name, position)
+            slef.chr_list.append(chr_name)
+
+    def add_variant(self,):
+
