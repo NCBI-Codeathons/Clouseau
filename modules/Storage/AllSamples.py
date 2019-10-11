@@ -25,7 +25,5 @@ class AllSamples:
             chr_name.add_variant(variant)
         else:
             chr_name = Chr.Chr(chr_name, position)
-            slef.chr_list.append(chr_name)
+            self.chr_list.append(chr_name)
             chr_name.add_variant(variant)
-
-
