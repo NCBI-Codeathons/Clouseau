@@ -25,5 +25,4 @@ class AllSamples:
             pass
         else:
             my_chr = Chr.Chr(chr_name, position)
-            slef.chr_list.append(my_chr)
-
+            self.chr_list.append(my_chr)
