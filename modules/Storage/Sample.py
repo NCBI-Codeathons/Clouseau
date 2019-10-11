@@ -8,7 +8,7 @@ class Sample(object):
         self.chrom_name = []
 
     def add_chrom_name(chrom_name):
-        if chrom_name in self.chrom_name
+        if: chrom_name in self.chrom_name
             pass
-        else ChromName = chrom_name.chrom_name
+        else: ChromName = chrom_name.chrom_name
             chrom_name = chrom_name
