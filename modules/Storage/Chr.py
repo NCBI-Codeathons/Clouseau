@@ -2,7 +2,7 @@ class Chr(object):
     """ Chromosome Variant object """
 
     def __init__(self, chrom_name, pos):
-        self.chrom_name = str()
+        self.chrom_name = chrom_name
         self.start = pos
         self.end = pos
         self.variants = {}
