@@ -20,12 +20,12 @@ class AllSamples:
             sample = Sample.Sample()
             sample.name = sample_name
 
-    def add_new_chr(self, chr_name, position):
+    def add_new_chr(self, chr_name, position, variant):
         if chr_name in self.chr_list:
-            pass
+            chr_name.add_variant(variant)
         else:
             chr_name = Chr.Chr(chr_name, position)
             slef.chr_list.append(chr_name)
+            chr_name.add_variant(variant)
 
-    def add_variant(self,):
 
