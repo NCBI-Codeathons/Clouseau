@@ -22,6 +22,7 @@ class AllSamples:
 
     def add_new_chr(self, chr_name, position, variant):
         if chr_name in self.chr_list:
+            chr_name.update_position(pos)
             chr_name.add_variant(variant)
         else:
             chr_name = Chr.Chr(chr_name, position)
