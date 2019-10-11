@@ -1,7 +1,6 @@
 #!/usr/bin/python
 
 
-
 def parse_args():
     '''Parse the input arguments.'''
     ap = argparse.ArgumentParser(description='Calculate summary stat for VCF')
