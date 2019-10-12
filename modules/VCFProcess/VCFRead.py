@@ -1,3 +1,9 @@
+#!/usr/bin/env python
+
+import multiprocessing as  mp,os
+
+pool = mp.Pool(cores)
+jobs = []
 
 
 def open_handle(myfile):
@@ -29,4 +35,40 @@ class ReadVcf:
     @staticmethod
     def file_type(vcf_file):
         if vcf_file.endswith('vcf'):
+            return('VCF')
 
+    def process_wrapper(vcf_file, chunkStart, chunkSize):
+        with open(vcf_file) as f:
+            f.seek(chunkStart)
+            lines = f.read(chunkSize).splitlines()
+            for line in lines:
+                print(line)
+
+    def chunkify(vcf_file, size=1024*1024):
+        fileEnd = os.path.getsize(vcf_file)
+        with open(vcf_file,'r') as f:
+            chunkEnd = f.tell()
+            while True:
+                chunkStart = chunkEnd
+                f.seek(size,1)
+                f.readline()
+                chunkEnd = f.tell()
+                yield chunkStart, chunkEnd - chunkStart
+                chunkSize = chunkEnd - chunkStart
+                if chunkEnd > fileEnd:
+                    break
+
+    def read_file(vcf_file, cores=mp.cpu_count()):
+        pool = mp.Pool(cores)
+        jobs = []
+
+        #create jobs
+        for chunkStart,chunkSize in chunkify(vcf_file):
+            jobs.append( pool.apply_async(process_wrapper,(vcf_file, chunkStart,chunkSize)) )
+
+        #wait for all jobs to finish
+        for job in jobs:
+            job.get()
+
+        #clean up
+        pool.close()
