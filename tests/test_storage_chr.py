@@ -1,7 +1,7 @@
 import pytest
 import math
 from random import randint
-from Storage import Chr
+from modules.Storage import Chr
 
 @pytest.fixture
 def default_chr():
