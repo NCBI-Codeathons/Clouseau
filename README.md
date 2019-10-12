@@ -5,4 +5,4 @@
 
 ![User requirement](./plots/requirement.jpg)
 
-![Proposed implementation](./plots/implementation\ plan.jpg)
+![Proposed implementation](./plots/implementation_plan.jpg)
