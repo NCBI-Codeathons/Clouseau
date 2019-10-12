@@ -59,6 +59,13 @@ def test_add_variant(default_chr_1):
 @pytest.mark.unit
 def test_update_position(default_chr_object, default_chr_2):
     position = default_chr_2['position']
-    new_position = default_chr_object.update_position(position, 100)
-    assert new_position.start == 25
-    assert new_position.end == 50
+    default_chr_object.update_position(position, 100)
+    assert default_chr_object.start == 25
+    assert default_chr_object.end == 50
+
+
+@pytest.mark.unit
+def test_update_variants(default_chr_object, default_chr_2):
+    variant_type = default_chr_2['variant_type']
+    default_chr_object.add_variant(variant_type)
+    assert default_chr_object.variants['variant1'] == 2
