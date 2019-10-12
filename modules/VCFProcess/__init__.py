@@ -1,1 +1,2 @@
-from .VCFRead import VCFRead
+from .VCFRead import ReadVcf
+from .VCFRead import process

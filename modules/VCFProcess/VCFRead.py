@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 
 import multiprocessing as  mp
+import os
 from .. import Storage
 
 all_sample_storage = Storage.AllSamples()
@@ -30,9 +31,7 @@ def process(vcf_line):
                 sample_object.add_new_chr(chr_name=chr, position=pos, variant=sv)
 
 
-
-
-class ReadVcf:
+class ReadVcf(object):
     """
     Read the vcf file based on the ending into chunks
     """
@@ -46,16 +45,15 @@ class ReadVcf:
             return('VCF')
 
     def process_wrapper(self, chunkStart, chunkSize):
-        with open(self.vcf_file) as f:
+        with open(self.vcf_file, 'rb') as f:
             f.seek(chunkStart)
             lines = f.read(chunkSize).splitlines()
-
             for line in lines:
                 print(line)
 
     def chunkify(self, size=1024*1024):
-        fileEnd = os.path.getsize(vcf_file)
-        with open(self.vcf_file,'r') as f:
+        fileEnd = os.path.getsize(self.vcf_file)
+        with open(self.vcf_file,'rb') as f:
             chunkEnd = f.tell()
             while True:
                 chunkStart = chunkEnd
@@ -71,8 +69,8 @@ class ReadVcf:
         jobs = []
 
         #create jobs
-        for chunkStart,chunkSize in chunkify(self.vcf_file):
-            jobs.append( pool.apply_async(process_wrapper,( chunkStart,chunkSize)) )
+        for chunkStart,chunkSize in self.chunkify():
+            jobs.append( pool.apply_async(self.process_wrapper,(chunkStart,chunkSize)) )
 
         #wait for all jobs to finish
         for job in jobs:
