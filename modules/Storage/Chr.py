@@ -14,20 +14,15 @@ class Chr(object):
         self.end = position
         self.variants = {}
 
-
+#Update the start or end position if new variant is higher/lower
     def update_position(self, position, gap):
+        # assuming ordered input check if next variant is too far away from current end position
+        if position - self.end > gap:
+            logger.error('%s\t%s', self.chrom_name, position )
         if self.start > position:
-            diff_start_position = self.start - position
             self.start = position
         elif self.end < position:
-            diff_end_position = self.end - position
             self.end = position
-
-        if diff_start_position and abs(diff_start_position) > gap :
-            logger.error('%s\t%s', self.chrom_name, position )
-        elif diff_end_position and abs(diff_end_position) > gap :
-            logger.error('%s\t%s\t', self.chrom_name, position )
-
 
     def add_variant(self, variant):
         if variant in self.variants:

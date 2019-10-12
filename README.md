@@ -1,5 +1,7 @@
-# VCF_QC
+# Clouseau
 **A tool for QC of large VCF files**
+
+![mid_workflow](./plots/mid_workflow.png)
 
 ![Main Workflow](./plots/workflow.png)
 
@@ -14,4 +16,6 @@ Proposed implementation plan. The code is separated into two modules: Storage an
 
 
 ![Proposed implementation](./plots/implementation_plan.jpg)
-![mid_workflow](./plots/mid_workflow.png)
+
+''' thing '''
+
