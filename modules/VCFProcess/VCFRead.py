@@ -23,7 +23,7 @@ def process(vcf_line):
         samples_values = line_split[9:]
         all_sample_storage.add_new_chr(chr_name=chr, position=pos, variant=sv)
         # get sample object by name
-        for sample_name, sample_value in zip(sample_names, sample_value):
+        for sample_name, sample_value in zip(sample_names, samples_values):
             # get sample object
             sample_object = all_sample_storage[sample_name]
             if sample_value != ".":
