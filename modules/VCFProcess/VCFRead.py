@@ -4,21 +4,31 @@ import multiprocessing as  mp
 from modules import Storage
 
 all_sample_storage = Storage.AllSamples()
-
+sample_names = []
 
 def process(vcf_line):
     line_split = vcf_line.split()
     if vcf_line.statswith("#C"): # if it  is the header line
-        sample_names  = line_split[9:]
+        sample_names = line_split[9:]
         # adding samples to allsamples object
         for sample in sample_names:
             # create object with sample name
             all_sample_storage.add_new_sample(sample)
 
-    chr = line_split[0]
-    pos = line_split[1]
-    inf = line_split[7]
-    sv = inf.split(";")[8].split("=")[1]
+    else: # sample already added now we are updating values
+        chr = line_split[0]
+        pos = line_split[1]
+        inf = line_split[7]
+        sv = inf.split(";")[8].split("=")[1]
+        samples_values = line_split[9:]
+        all_sample_storage.add_new_chr(chr_name=chr, position=pos, variant=sv)
+        # get sample object by name
+        for sample_name, sample_value in zip(sample_names, sample_value):
+            # get sample object
+            sample_object = all_sample_storage[sample_name]
+            if sample_value != ".":
+                sample_object.add_new_chr(chr_name=chr, position=pos, variant=sv)
+
 
     
 
