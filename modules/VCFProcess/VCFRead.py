@@ -1,9 +1,6 @@
 #!/usr/bin/env python
 
-import multiprocessing as  mp,os
-
-pool = mp.Pool(cores)
-jobs = []
+import multiprocessing as  mp
 
 
 def open_handle(myfile):
@@ -44,9 +41,9 @@ class ReadVcf:
             for line in lines:
                 print(line)
 
-    def chunkify(vcf_file, size=1024*1024):
+    def chunkify(self, size=1024*1024):
         fileEnd = os.path.getsize(vcf_file)
-        with open(vcf_file,'r') as f:
+        with open(self.vcf_file,'r') as f:
             chunkEnd = f.tell()
             while True:
                 chunkStart = chunkEnd
@@ -58,13 +55,13 @@ class ReadVcf:
                 if chunkEnd > fileEnd:
                     break
 
-    def read_file(vcf_file, cores=mp.cpu_count()):
+    def read_file(self, cores=mp.cpu_count()):
         pool = mp.Pool(cores)
         jobs = []
 
         #create jobs
-        for chunkStart,chunkSize in chunkify(vcf_file):
-            jobs.append( pool.apply_async(process_wrapper,(vcf_file, chunkStart,chunkSize)) )
+        for chunkStart,chunkSize in chunkify(self.vcf_file):
+            jobs.append( pool.apply_async(process_wrapper,(self.vcf_file,chunkStart,chunkSize)) )
 
         #wait for all jobs to finish
         for job in jobs:
