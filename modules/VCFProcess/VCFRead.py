@@ -13,6 +13,7 @@ def process(vcf_line):
     inf = line_split[7]
     sv = inf.split(";")[8].split("=")[1]
     
+    
 
 class ReadVcf:
     """
