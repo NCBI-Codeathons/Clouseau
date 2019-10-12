@@ -1,8 +1,18 @@
 #!/usr/bin/env python
 
 import multiprocessing as  mp
+from modules import Storage
+
+all_sample_storage = Storage.AllSamples()
 
 
+def process(vcf_line):
+    line_split = vcf_line.split()
+    chr = line_split[0]
+    pos = line_split[1]
+    inf = line_split[7]
+    sv = inf.split(";")[8].split("=")[1]
+    
 
 class ReadVcf:
     """
