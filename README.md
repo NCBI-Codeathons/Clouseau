@@ -5,7 +5,7 @@
 
 ## Breakdown user requirement
 
-# Early Planning 
+## Early Planning 
 ![User requirement](./plots/requirement.jpg)
 
 ![Main Workflow](./plots/workflow.png)
