@@ -11,6 +11,7 @@ class ReadVcf:
 
     def __init__(self, vcf_file):
         self.vcf_file = vcf_file
+        # new sotrge object
 
     @staticmethod
     def file_type(vcf_file):
@@ -21,6 +22,7 @@ class ReadVcf:
         with open(self.vcf_file) as f:
             f.seek(chunkStart)
             lines = f.read(chunkSize).splitlines()
+
             for line in lines:
                 print(line)
 
