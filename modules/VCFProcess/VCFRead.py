@@ -34,8 +34,8 @@ class ReadVcf:
         if vcf_file.endswith('vcf'):
             return('VCF')
 
-    def process_wrapper(vcf_file, chunkStart, chunkSize):
-        with open(vcf_file) as f:
+    def process_wrapper(self, chunkStart, chunkSize):
+        with open(self.vcf_file) as f:
             f.seek(chunkStart)
             lines = f.read(chunkSize).splitlines()
             for line in lines:
@@ -61,7 +61,7 @@ class ReadVcf:
 
         #create jobs
         for chunkStart,chunkSize in chunkify(self.vcf_file):
-            jobs.append( pool.apply_async(process_wrapper,(self.vcf_file,chunkStart,chunkSize)) )
+            jobs.append( pool.apply_async(process_wrapper,( chunkStart,chunkSize)) )
 
         #wait for all jobs to finish
         for job in jobs:
