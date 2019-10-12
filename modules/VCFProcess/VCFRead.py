@@ -3,23 +3,6 @@
 import multiprocessing as  mp
 
 
-def open_handle(myfile):
-    if opath.isfile(myfile):
-        if myfile.endswith('vcf.gz'):
-            import gzip
-            return gzip.open(myfile, 'rt'), "fastq"
-        elif myfile.endswith('fasta.gz'):
-            import gzip
-            return gzip.open(myfile, 'rt'), "fasta"
-        elif myfile.endswith('.fasta',):
-            return open(myfile, 'r'), 'fasta'
-        elif myfile.endswith('.fastq'):
-            return open(myfile, 'r'), 'fastq'
-        else:
-            sys.exit("This file {} is of unknow extesnion.".format(myfile))
-    else:
-        sys.exit("This file {} does not exist.".format(myfile))
-
 
 class ReadVcf:
     """
