@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 
-from Storage import Sample
-from Storage import Chr
+from modules.Storage import Sample
+from modules.Storage import Chr
 
 
 class AllSamples:
