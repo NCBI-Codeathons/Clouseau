@@ -13,7 +13,7 @@ def process(vcf_line):
         # adding samples to allsamples object
         for sample in sample_names:
             # create object with sample name
-            sample
+            all_sample_storage.add_new_sample(sample)
 
     chr = line_split[0]
     pos = line_split[1]
