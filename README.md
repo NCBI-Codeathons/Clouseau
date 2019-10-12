@@ -1,9 +1,9 @@
 # Clouseau
 **A QC suite for large VCF files**
 
-![mid_workflow](./plots/mid_workflow.png)
-
 ## Workflow
+
+![mid_workflow](./plots/mid_workflow.png)
 
 ## Early Planning 
 ![User requirement](./plots/requirement.jpg)
