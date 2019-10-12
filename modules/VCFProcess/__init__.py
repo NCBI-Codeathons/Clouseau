@@ -1,1 +1,1 @@
-from . import VCFRead
+from .VCFRead import VCFRead
