@@ -1,3 +1,3 @@
-from . import AllSamples
-from . import Sample
-from . import Chr
+from .AllSamples import AllSamples
+from .Sample import Sample
+from .Chr import Chr

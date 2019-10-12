@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 
 import multiprocessing as  mp
-from modules import Storage
+from .. import Storage
 
 all_sample_storage = Storage.AllSamples()
 sample_names = []
