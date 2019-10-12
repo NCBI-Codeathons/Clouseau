@@ -14,7 +14,7 @@ class Chr(object):
         self.end = position
         self.variants = {}
 
-#Update the start or end position if new variant is higher/lower
+    #Update the start or end position if new variant is higher/lower
     def update_position(self, position, gap):
         # assuming ordered input check if next variant is too far away from current end position
         if position - self.end > gap:
