@@ -51,7 +51,6 @@ class ReadVcf:
                 f.readline()
                 chunkEnd = f.tell()
                 yield chunkStart, chunkEnd - chunkStart
-                chunkSize = chunkEnd - chunkStart
                 if chunkEnd > fileEnd:
                     break
 
