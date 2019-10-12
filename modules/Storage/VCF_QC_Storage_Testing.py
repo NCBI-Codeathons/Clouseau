@@ -34,20 +34,21 @@ class Test(unittest.TestCase):
             self.assertEqual(chr_obj.chrom_name, self.name + str(i))
             self.assertEqual(chr_obj.start, self.position1)
             self.assertEqual(chr_obj.end, self.position1)
-            self.assertIsInstance(chr_obj.variants, list)
+            #self.assertIsInstance(chr_obj.variants, list)
 
 
-    # def test_1_add_variant_chr(self):
-    #     for i in range(6):
-    #         self.position2 = int(math.exp(randint(1, 5))) * 30
-    #         chr_obj =
+    def test_1_add_variant_chr(self):
+        for i in range(6):
+            self.position2 = int(math.exp(randint(1, 5))) * 30
+            chr_obj =
 
-    # def test_2_update_chr(self):
-    #     for i in range(6):
-    #         # check if update position works
-    #         chr_obj =
-    #         self.position2 = int(math.exp(randint(1, 5))) * 30
-    #         chr_obj.update_position(self.position2, 500)
+    def test_2_update_chr(self):
+        for i in range(6):
+            # check if update position works
+            chr_obj = 
+            self.position2 = int(math.exp(randint(1, 5))) * 30
+            chr_obj.update_position(self.position2, 500)
+            self.assertLogs()
 
 
 if __name__ == '__main__':
