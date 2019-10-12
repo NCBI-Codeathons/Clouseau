@@ -19,7 +19,7 @@ def process(vcf_line):
         chr = line_split[0]
         pos = line_split[1]
         inf = line_split[7]
-        sv = inf.split(";")[8].split("=")[1]
+        sv = inf.split(";")[8].split("=")[1] # Do a string match if SVTYPE not in 8th field
         samples_values = line_split[9:]
         all_sample_storage.add_new_chr(chr_name=chr, position=pos, variant=sv)
         # get sample object by name
@@ -30,7 +30,7 @@ def process(vcf_line):
                 sample_object.add_new_chr(chr_name=chr, position=pos, variant=sv)
 
 
-    
+
 
 class ReadVcf:
     """
@@ -39,7 +39,6 @@ class ReadVcf:
 
     def __init__(self, vcf_file):
         self.vcf_file = vcf_file
-        # new sotrge object
 
     @staticmethod
     def file_type(vcf_file):
