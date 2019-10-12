@@ -3,19 +3,21 @@
 
 ![mid_workflow](./plots/mid_workflow.png)
 
+## Workflow
+
+## Early Planning 
+![User requirement](./plots/requirement.jpg)
+
 ![Main Workflow](./plots/workflow.png)
 
 
-## Breakdown user requirement
+## Proposed implementation plan
 
-
-![User requirement](./plots/requirement.jpg)
-
-
-## Proposed implementation plan. The code is separated into two modules: Storage and Processing. This would help us to easily swap out Processing module with low level language for faster processing if needed. 
-
+The code is separated into two modules: Storage and Processing. This allows for easy swap out of Processing module with low level language for faster processing if needed. 
 
 ![Proposed implementation](./plots/implementation_plan.jpg)
 
-``` thing ```
+``` 
+clouseau.py -derp
+```
 
