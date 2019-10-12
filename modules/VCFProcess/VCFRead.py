@@ -3,7 +3,6 @@
 import multiprocessing as  mp
 
 
-
 class ReadVcf:
     """
     Read the vcf file based on the ending into chunks
