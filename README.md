@@ -5,18 +5,6 @@
 
 ![mid_workflow](./plots/mid_workflow.png)
 
-## Early Planning 
-![User requirement](./plots/requirement.jpg)
-
-![Main Workflow](./plots/workflow.png)
-
-
-## Proposed implementation plan
-
-The code is separated into two modules: Storage and Processing. This allows for easy swap out of Processing module with low level language for faster processing if needed. 
-
-![Proposed implementation](./plots/implementation_plan.jpg)
-
 ## Usage
 ``` 
 clouseau.py -derp
@@ -35,6 +23,18 @@ Log file for gaps, named "gaps.tsv."
 Sample_name	gap_start gap_end
 Sample 1 	800	1000
 ```
+
+## Early Planning 
+![User requirement](./plots/requirement.jpg)
+
+![Main Workflow](./plots/workflow.png)
+
+
+## Proposed implementation plan
+
+The code is separated into two modules: Storage and Processing. This allows for easy swap out of Processing module with low level language for faster processing if needed. 
+
+![Proposed implementation](./plots/implementation_plan.jpg)
 
 ## Acknowledgements & Thanks
 The first version of Clouseau was completed during the NCBI-BCM Codeathon from October 11-13, 2019 at Baylor College of Medicine in Houston, Texas.

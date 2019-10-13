@@ -17,15 +17,11 @@ def create_output_folder():
     return output_path
 
 
-def Union(lsts):
-    set_output=set()
-    for lst in lsts:
-        set_output = set_output.union(lst)
-    return sorted(list(set_output))
-
-
 def all_sv_type(all_samples):
-    return Union(all_samples.chr_list.keys().variant.keys())
+    all_sv_composite_list = set()
+    for chromosome in all_samples.chr_list.keys():
+        all_sv_composite_list = all_sv_composite_list.union(all_samples.chr_list[chromosome].variants.keys())
+    return sorted(list(all_sv_composite_list))
 
 
 def sorted_chromosome(all_samples):
@@ -33,8 +29,8 @@ def sorted_chromosome(all_samples):
     sorted_chromosome(AllSamples) -> list
     :return: list of chromosome found in all samples
     """
-    sorted_chromosome = sorted(all_samples.chr_list.keys())
-    return sorted_chromosome
+    sorted_chromosome_list = sorted(all_samples.chr_list.keys())
+    return sorted_chromosome_list
 
 
 def attribute_table(sample_name, sample, all_sv_list, sorted_chromosome_list,file):
@@ -46,26 +42,26 @@ def attribute_table(sample_name, sample, all_sv_list, sorted_chromosome_list,fil
         variant_count=[]
         for variant in all_sv_list:
             try:
-                variant_count.append(sample.chr_list[chromosome].variant[variant])
+                variant_count.append(sample.chr_list[chromosome].variants[variant])
             except KeyError:
-                variant_count.append(0)
+                variant_count.append('0')
 
-            file.write("{}\t{}\t{}\t{}\n".format(chromosome, "\t".join(variant_count),
-                                          sample.chr_list[chromosome].start,
-                                          sample.chr_list[chromosome].end))
+        file.write("{}\t{}\t{}\t{}\n".format(chromosome, "\t".join(map(str,(variant_count))),
+                                             sample.chr_list[chromosome].start,
+                                             sample.chr_list[chromosome].end))
 
 
 # receiving all samples
 def output_all_samples(all_samples):
-    sub_samples_list = all_samples.sample_list
     sorted_chromosome_list = sorted_chromosome(all_samples)
     all_sv_list = all_sv_type(all_samples)
     output_folder_path = create_output_folder()
 
-    output_file_path = os.path.join(output_folder_path, all_samples)
+    output_file_path = os.path.join(output_folder_path, 'all_samples')
     with open(output_file_path, 'w') as file:
-        attribute_table('all samples', all_samples, all_sv_list, sorted_chromosome_list, file)
+        attribute_table('all_samples', all_samples, all_sv_list, sorted_chromosome_list, file)
 
+    sub_samples_list = all_samples.sample_list.keys()
     for sample in sub_samples_list:
         output_file_path=os.path.join(output_folder_path, sample)
         with open(output_file_path, 'w') as file:
