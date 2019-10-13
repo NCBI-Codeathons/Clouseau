@@ -2,7 +2,7 @@
 
 import multiprocessing as  mp
 import os
-from .. import Storage
+from modules import Storage
 
 
 class ReadVcf(object):
@@ -72,3 +72,9 @@ class ReadVcf(object):
             for sample in sample_names:
                 # create object with sample name
                 self.all_sample_storage.add_new_sample(sample)
+
+
+if __name__ == "main":
+    all_sample = ReadVcf("/users/mmahmoud/home/projects/apps/VCF_QC/samples/samples/new_test_10.vcf")
+    all_sample.read_file()
+    print(all_sample.sample_names)
