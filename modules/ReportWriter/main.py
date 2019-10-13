@@ -2,7 +2,7 @@
 
 import argparse
 from modules.VCFProcess import VCFRead
-
+from modules.ReportWriter.qc_calculation import output_all_samples
 
 def parse_args():
     '''Parse the input arguments.'''
@@ -25,4 +25,6 @@ def parse_args():
 if __name__ == '__main__':
     args = parse_args()
     write_object = VCFRead.process_vcf(args.input_file)
+    output_all_samples(write_object)
     print(write_object)
+
