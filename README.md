@@ -49,10 +49,10 @@ Department of Bioinformatics, University of Texas Southwestern Medical Center,
 5323 Harry Hines Blvd, Dallas, TX 75390
 
 Alejandro Rafael Gener @
-Margaret M. and Albert B. Alkek Department of Medicine, Nephrology, Baylor College of Medicine, Houston, Texas, USA
-Baylor College of Medicine, Integrative Molecular and Biomedical Sciences Program,Houston, Texas, USA
-MD Anderson Cancer Center, Department of Genetics, Houston, Texas, USA
-Universidad Central del Caribe, School of Medicine, Bayamón, Puerto Rico, USA
+Margaret M. and Albert B. Alkek Department of Medicine, Nephrology, Baylor College of Medicine, Houston, Texas, USA;
+Baylor College of Medicine, Integrative Molecular and Biomedical Sciences Program,Houston, Texas, USA;
+MD Anderson Cancer Center, Department of Genetics, Houston, Texas, USA;
+Universidad Central del Caribe, School of Medicine, Bayamón, Puerto Rico, USA.
 
 Robert Fullem @
 Molecular and Human Genetics Department, Baylor College of Medicine
