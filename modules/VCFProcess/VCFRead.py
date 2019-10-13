@@ -101,7 +101,7 @@ def process_vcf(vcf_file):
                 all_sample_storage.add_new_chr(chr, pos, sv)
                 for sample, value in zip(sample_names, line_split[9:]):
                     if value != ".":
-                        all_sample_storage[sample].add_new_chr(chr, pos, sv)
+                        all_sample_storage.sample_list[sample].add_new_chr(chr, pos, sv)
 
 
 
