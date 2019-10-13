@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-import multiprocessing as  mp
+import multiprocessing as mp
 import os
 from modules import Storage
 
@@ -13,6 +13,7 @@ class ReadVcf(object):
     def __init__(self, vcf_file):
         self.vcf_file = vcf_file
         self.all_sample_storage = Storage.AllSamples()
+        # print(self.all_sample_storage)
         self.sample_names = []
 
     @staticmethod
@@ -25,7 +26,6 @@ class ReadVcf(object):
             f.seek(chunkStart)
             lines = f.read(chunkSize).splitlines()
             for line in lines:
-                print("pro")
                 self.process_vcf(line)
 
     def chunkify(self, size=1024*1024):
@@ -44,16 +44,13 @@ class ReadVcf(object):
     def read_file(self, cores=1):
         pool = mp.Pool(cores)
         jobs = []
-
-        #create jobs
-        for chunkStart,chunkSize in self.chunkify():
-            jobs.append( pool.apply_async(self.process_wrapper,(chunkStart,chunkSize)) )
-
-        #wait for all jobs to finish
+        # create jobs
+        for chunkStart, chunkSize in self.chunkify():
+            jobs.append( pool.apply_async(self.process_wrapper, (chunkStart, chunkSize)))
+        # wait for all jobs to finish
         for job in jobs:
             job.get()
-
-        #clean up
+        # clean up
         pool.close()
 
     def process_vcf(self, vcf_line):
@@ -62,19 +59,20 @@ class ReadVcf(object):
         if vcf_line.startswith("##"):
             pass
         elif vcf_line.startswith("#C"): # if it  is the header line
-            print(vcf_line)
-            sample_names = line_split[9:]
-            print(sample_names)
+            sample_names = line_split[9:12]
             self.sample_names = sample_names
-
-
-            # adding samples to allsamples object
+            # print(self)
+            print("names from vcf >>> {}".format(sample_names))
+            print(">>>>>>>>>>>>>> {}".format(self.sample_names))
+            # adding samples to all samples object
             for sample in sample_names:
                 # create object with sample name
                 self.all_sample_storage.add_new_sample(sample)
+        else:
+            pass
 
 
-if __name__ == "main":
-    all_sample = ReadVcf("/users/mmahmoud/home/projects/apps/VCF_QC/samples/samples/new_test_10.vcf")
-    all_sample.read_file()
-    print(all_sample.sample_names)
+
+if __name__ == "__main__":
+    all_sample = ReadVcf("/users/mmahmoud/home/projects/apps/VCF_QC/samples/new_test_10.vcf")
+    # print(all_sample.__dict__)
