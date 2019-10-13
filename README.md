@@ -41,29 +41,29 @@ The first version of Clouseau was completed during the NCBI-BCM Codeathon from O
 
 ## Authors
 Medhat Mahmoud (Project Lead)
-medhat.mahmoud@bcm.edu 
+ 
 Baylor College of Medicine, Human Genome Sequencing Center
 One Baylor Plaza, Houston, TX 77030
 
 Venkat Sai Malladi
-venkat.malladi@utsouthwestern.edu
+
 Department of Bioinformatics, University of Texas Southwestern Medical Center, 
 5323 Harry Hines Blvd, Dallas, TX 75390
 
 Alejandro Rafael Gener
-gener@bcm.edu; itspronouncdhenner@gmail.com
+
 Margaret M. and Albert B. Alkek Department of Medicine, Nephrology, Baylor College of Medicine, Houston, Texas, USA
 Baylor College of Medicine, Integrative Molecular and Biomedical Sciences Program,Houston, Texas, USA
 MD Anderson Cancer Center, Department of Genetics, Houston, Texas, USA
 Universidad Central del Caribe, School of Medicine, Bayamón, Puerto Rico, USA
 
 Robert Fullem
-robert.fullem@bcm.edu
+
 Molecular and Human Genetics Department, Baylor College of Medicine
 One Baylor Plaza, Houston, TX 77030
 
 Arkarachai Fungtammasan
-arkarachai.af@gmail.com
+
 DNAnexus
 1975 W.El Camino Real, Mountain view, CA 94040
 
