@@ -21,6 +21,15 @@ def sorted_chromosome(all_sample):
     return sorted_chromosome
 
 
+def sorted_sample(all_sample):
+    """
+    sorted_sample(AllSamples) -> list
+    :return: list of sample found in all samples
+    """
+    sorted_sample = sorted(all_sample.sample_list.keys())
+    return sorted_sample
+
+
 def number_of_sample(all_sample):
     """
     number_of_sample(AllSamples) -> int
@@ -48,17 +57,31 @@ def number_of_sample(all_sample):
 
 def chromosome_start_stop(all_sample):
     """
-    chromosome_start_stop(AllSamples) -> int
+    chromosome_start_stop(AllSamples) -> list of list
     :return: number of samples
     """
     sorted_chromosome = sorted_chromosome(all_sample)
+    print('chromosome start and end')
     print('chromosome\tstart\tstop')
     for chromosome in sorted_chromosome:
         print('{chr}\t{start}\t{stop}'.format(chr=chromosome, start=all_sample.chr_list.start, stop=all_sample.chr_list.end))
 
 
 def variant_per_chromosome(all_sample):
-    pass
+    """
+    variant_per_chromosome(AllSamples) -> int
+    :return: number of samples
+    """
+    sorted_chromosome = sorted_chromosome(all_sample)
+    sorted_sample = sorted_sample(all_sample)
+    print("variant per chromosome in all samples")
+    print('sample'+'\t'+'\t'.join(sorted_chromosome))
+    for chromosome in sorted_chromosome:
+        for sample in sorted_sample:
+
+
+        print('{chr}\t{start}\t{stop}'.format(chr=chromosome, start=all_sample.chr_list.start, stop=all_sample.chr_list.end))
+
 
 if __name__ == '__main__':
     pass
