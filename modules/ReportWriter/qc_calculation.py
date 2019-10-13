@@ -46,29 +46,26 @@ def attribute_table(sample_name, sample, all_sv_list, sorted_chromosome_list,fil
             except KeyError:
                 variant_count.append('0')
 
-            file.write("{}\t{}\t{}\t{}\n".format(chromosome, "\t".join(map(str,(variant_count))),
-                                          sample.chr_list[chromosome].start,
-                                          sample.chr_list[chromosome].end))
+        file.write("{}\t{}\t{}\t{}\n".format(chromosome, "\t".join(map(str,(variant_count))),
+                                             sample.chr_list[chromosome].start,
+                                             sample.chr_list[chromosome].end))
 
 
 # receiving all samples
 def output_all_samples(all_samples):
-    sub_samples_list = all_samples.sample_list
     sorted_chromosome_list = sorted_chromosome(all_samples)
     all_sv_list = all_sv_type(all_samples)
-    print(sorted_chromosome_list)
-    print(all_sv_list)
     output_folder_path = create_output_folder()
 
     output_file_path = os.path.join(output_folder_path, 'all_samples')
-
     with open(output_file_path, 'w') as file:
         attribute_table('all_samples', all_samples, all_sv_list, sorted_chromosome_list, file)
 
-    # for sample in sub_samples_list:
-    #     output_file_path=os.path.join(output_folder_path, sample)
-    #     with open(output_file_path, 'w') as file:
-    #         attribute_table(sample,all_samples.sample_list[sample],all_sv_list,sorted_chromosome_list,file)
+    sub_samples_list = all_samples.sample_list.keys()
+    for sample in sub_samples_list:
+        output_file_path=os.path.join(output_folder_path, sample)
+        with open(output_file_path, 'w') as file:
+            attribute_table(sample,all_samples.sample_list[sample],all_sv_list,sorted_chromosome_list,file)
 
 
 def chromosome_start_stop(all_sample): # not currently use
