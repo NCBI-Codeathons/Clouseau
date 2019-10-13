@@ -68,9 +68,20 @@ class ReadVcf(object):
             for sample in sample_names:
                 # create object with sample name
                 self.all_sample_storage.add_new_sample(sample)
-        else:
-            pass
-
+        else: # sample already added now we are updating values
+                chr = line_split[0]
+                pos = line_split[1]
+                inf = line_split[7]
+                sv = inf.split(";")[8].split("=")[1] # Do a string match if SVTYPE not in 8th field
+                samples_values = line_split[9:]
+                self.all_sample_storage.add_new_chr(chr_name=chr, position=pos, variant=sv, gap=0)
+                # get sample object by name
+                for sample_name, sample_value in zip(self.sample_names, samples_values):
+                    # get sample object
+                    sample = self.all_sample_storage.sample_list[sample_name]
+                    if sample_value != ".":
+                        sample.add_new_chr(sample_name, chr_name=chr, position=pos, variant=sv, gap=0)
+                        self.all_sample_storage.sample_list[sample_name] = sample
 
 
 if __name__ == "__main__":
