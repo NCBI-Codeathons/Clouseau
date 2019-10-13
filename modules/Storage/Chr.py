@@ -19,7 +19,8 @@ class Chr(object):
         # assuming ordered input check if next variant is too far away from current end position
         position = int(position)
         if position - self.end > gap:
-            logger.error('%s\t%s', self.chrom_name, position )
+            #logger.error('%s\t%s', self.chrom_name, position )
+            pass
         if self.start > position:
             self.start = position
         elif self.end < position:
