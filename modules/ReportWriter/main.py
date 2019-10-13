@@ -8,7 +8,7 @@ def parse_args():
     '''Parse the input arguments.'''
     ap = argparse.ArgumentParser(description='Calculate summary stat for VCF')
 
-    ap.add_argument('-i', '--input-file',
+    ap.add_argument('-i', '--input_file',
                     help='file name',
                     required=False)
 
@@ -24,4 +24,4 @@ def parse_args():
 
 if __name__ == '__main__':
     args = parse_args()
-    write_object = VCFRead.process_vcf(args.input-file)
+    write_object = VCFRead.process_vcf(args.input_file)
