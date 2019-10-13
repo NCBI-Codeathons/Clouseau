@@ -103,6 +103,8 @@ def process_vcf(vcf_file):
     return all_sample_storage
 
 
+
+
 if __name__ == "__main__":
     process_vcf("./samples/new_test_10.vcf")
 
