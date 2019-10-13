@@ -6,6 +6,8 @@ def output_all_samples(all_samples):
     sub_samples_list = all_samples.sample_list
     chr_list_for_allsamples = all_samples.chr_list
     varinat_list = max(sv for sv in chr_list_for_allsamples.keys().variant)
+    header = "{}\t{}\t{}\t{}".format("chr", "\t".join(varinat_list), "start", "end")
+
 
 
 def remove_prefix(text, prefix):
