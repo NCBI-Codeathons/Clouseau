@@ -20,11 +20,8 @@ class AllSamples:
             sample = Sample.Sample()
             self.sample_list[sample_name] = sample
 
-<<<<<<< HEAD
-    def add_new_chr(self, chr_name, position, variant, gap=1):
-=======
+
     def add_new_chr(self, chr_name, position, variant, gap=10000):
->>>>>>> 95d134afb3e6dd4c60cfa6247285c5e19e5dc903
         if chr_name in self.chr_list.keys():
             self.chr_list[chr_name].update_position(position, gap)
             self.chr_list[chr_name].add_variant(variant)
