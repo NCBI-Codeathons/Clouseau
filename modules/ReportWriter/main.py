@@ -24,5 +24,6 @@ def parse_args():
 
 if __name__ == '__main__':
     args = parse_args()
+    print(args.input_file)
     write_object = VCFRead.process_vcf(args.input_file)
-    print(write_object)
+    print(write_object.__dict__)
