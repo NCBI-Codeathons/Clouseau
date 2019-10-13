@@ -40,7 +40,7 @@ Sample 1 	800	1000
 The first version of Clouseau was completed during the NCBI-BCM Codeathon from October 11-13, 2019 at Baylor College of Medicine in Houston, Texas.
 
 ## Authors
-Medhat Mahmoud (Project Lead) 
+Medhat Mahmoud (Project Lead)
 Baylor College of Medicine, Human Genome Sequencing Center
 One Baylor Plaza, Houston, TX 77030
 
