@@ -1,12 +1,45 @@
 #!/usr/bin/env python
 
 
+import os
+
+
+def create_output_folder():
+    path = os.getcwd()
+    output_folder = 'results'
+
+    try:
+        os.mkdir(path, output_folder)
+    except OSError:
+        print ("Creation of the directory %s failed" % path)
+    else:
+        print ("Successfully created the directory %s" % path)
+    return os.path.join(path, output_folder)
+
+
+def Union(lsts):
+    set_output=set()
+    for lst in lsts:
+        set_output = set_output.union(lst)
+    return sorted(list(set_output))
+
+
+def all_sv_type(all_samples):
+    return Union(all_samples.chr_list.keys().variant.keys())
+
+
+def attribute_table(sample_name, sample, all_sv_list):
+    varinat_list = max(sv for sv in chr_list_for_allsamples.keys().variant.keys())
+    header = "{}\t{}\t{}\t{}".format("chr", "\t".join(varinat_list), "start", "end")
+
+
 # receiving all samples
 def output_all_samples(all_samples):
     sub_samples_list = all_samples.sample_list
     chr_list_for_allsamples = all_samples.chr_list
     varinat_list = max(sv for sv in chr_list_for_allsamples.keys().variant)
     header = "{}\t{}\t{}\t{}".format("chr", "\t".join(varinat_list), "start", "end")
+
 
 
 
@@ -40,22 +73,6 @@ def number_of_sample(all_sample):
     print('Number of sample {0}'.format(len(sample_list)))
 
 
-# def gender_check(sample):
-#     """
-#     gender_check(Sample) -> character
-#     :return: M or F representing gender for individual samples
-#     """
-#     MALE_SIGNATURE = ['Y','y']
-#
-#     chromosome_list = sample.chr_name
-#     #chromosome_list=['chr1','chr2']
-#     chromosome_list = map(lambda x: remove_prefix(x,'chr'), chromosome_list)
-#     chromosome_list = map(lambda x: remove_prefix(x, 'Chr'), chromosome_list)
-#     first_chr_chrommosome_list = set(map(lambda x: x[0], chromosome_list))
-#     if len(MALE_SIGNATURE.intersection(first_chr_chrommosome_list)) >0:
-#         return 'M'
-#     else:
-#         return 'F'
 
 def chromosome_start_stop(all_sample):
     """
