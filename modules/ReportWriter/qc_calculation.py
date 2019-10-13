@@ -1,20 +1,20 @@
 #!/usr/bin/env python
 
-
+import sys
 import os
 
 
 def create_output_folder():
     path = os.getcwd()
-    output_folder = 'results'
-
+    output_folder_name = 'results'
+    output_path = os.path.join(path, output_folder_name)
     try:
-        os.mkdir(path, output_folder)
+         os.mkdir(output_path)
     except OSError:
-        print ("Creation of the directory %s failed" % path)
+        sys.exit("Creation of the directory {0} failed".format(output_path))
     else:
-        print ("Successfully created the directory %s" % path)
-    return os.path.join(path, output_folder)
+        print ("Successfully created the directory {0}".format(output_path))
+    return output_path
 
 
 def Union(lsts):
@@ -28,57 +28,60 @@ def all_sv_type(all_samples):
     return Union(all_samples.chr_list.keys().variant.keys())
 
 
-def attribute_table(sample_name, sample, all_sv_list):
-    varinat_list = max(sv for sv in chr_list_for_allsamples.keys().variant.keys())
-    header = "{}\t{}\t{}\t{}".format("chr", "\t".join(varinat_list), "start", "end")
+def sorted_chromosome(all_samples):
+    """
+    sorted_chromosome(AllSamples) -> list
+    :return: list of chromosome found in all samples
+    """
+    sorted_chromosome = sorted(all_samples.chr_list.keys())
+    return sorted_chromosome
+
+
+def attribute_table(sample_name, sample, all_sv_list, sorted_chromosome_list,file):
+    header = "{}\t{}\t{}\t{}".format("chr", "\t".join(all_sv_list), "start", "end")
+
+    file.write(sample_name)
+    file.write(header)
+    for chromosome in sorted_chromosome_list:
+        variant_count=[]
+        for variant in all_sv_list:
+            try:
+                variant_count.append(sample.chr_list[chromosome].variant[variant])
+            except KeyError:
+                variant_count.append(0)
+
+            file.write("{}\t{}\t{}\t{}".format(chromosome, "\t".join(variant_count),
+                                          sample.chr_list[chromosome].start,
+                                          sample.chr_list[chromosome].end))
+
 
 
 # receiving all samples
 def output_all_samples(all_samples):
     sub_samples_list = all_samples.sample_list
+    sorted_chromosome_list = sorted_chromosome(all_samples)
+    all_sv_list = all_sv_type(all_samples)
+    output_folder_path = create_output_folder()
+
     for sample in sub_samples_list:
-        # pass the sample name and sample object to Chi
-        
+        output_file_path=os.path.join(output_folder_path, sample)
+        with open(output_file_path, 'w') as file:
+            attribute_table(sample,sample,all_sv_list,sorted_chromosome_list,file)
 
 
 
-
-
-def remove_prefix(text, prefix):
-    return text[text.startswith(prefix) and len(prefix):]
-
-
-def sorted_chromosome(all_sample):
-    """
-    sorted_chromosome(AllSamples) -> list
-    :return: list of chromosome found in all samples
-    """
-    sorted_chromosome = sorted(all_sample.chr_list.keys())
-    return sorted_chromosome
-
-
-def number_of_sample(all_sample):
-    """
-    number_of_sample(AllSamples) -> int
-    :return: number of samples
-    """
-    print('Number of sample {0}'.format(len(sample_list)))
-
-
-
-def chromosome_start_stop(all_sample):
+def chromosome_start_stop(all_sample): # not currently use
     """
     chromosome_start_stop(AllSamples) -> int
     :return: number of samples
     """
-    sorted_chromosome = sorted_chromosome(all_sample)
+
+    sorted_chromosome_list = sorted_chromosome(all_sample)
     print('chromosome\tstart\tstop')
-    for chromosome in sorted_chromosome:
+    for chromosome in sorted_chromosome_list:
         print('{chr}\t{start}\t{stop}'.format(chr=chromosome, start=all_sample.chr_list.start, stop=all_sample.chr_list.end))
 
 
-def variant_per_chromosome(all_sample):
-    pass
 
 if __name__ == '__main__':
     pass

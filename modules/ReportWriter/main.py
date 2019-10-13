@@ -1,6 +1,7 @@
 #!/usr/bin/python
 
 import argparse
+from modules.VCFProcess import VCFRead
 
 
 def parse_args():
@@ -23,3 +24,4 @@ def parse_args():
 
 if __name__ == '__main__':
     args = parse_args()
+    write_object = VCFRead.process_vcf(args.input-file)
