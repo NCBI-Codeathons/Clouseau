@@ -1,9 +1,11 @@
 #!/usr/bin/env python
 
-#from Storage import Sample
-#from Storage import Chr
-#from Storage import AllSamples
 
+# receiving all samples
+def output_all_samples(all_samples):
+    sub_samples_list = all_samples.sample_list
+    chr_list_for_allsamples = all_samples.chr_list
+    varinat_list = max(sv for sv in chr_list_for_allsamples.keys().variant)
 
 
 def remove_prefix(text, prefix):
@@ -56,6 +58,7 @@ def chromosome_start_stop(all_sample):
 
 
 def variant_per_chromosome(all_sample):
-
+    pass
 
 if __name__ == '__main__':
+    pass
