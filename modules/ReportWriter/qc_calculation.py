@@ -30,6 +30,7 @@ def sorted_chromosome(all_samples):
     :return: list of chromosome found in all samples
     """
     sorted_chromosome_list = sorted(all_samples.chr_list.keys())
+    print(sorted_chromosome_list)
     return sorted_chromosome_list
 
 
@@ -45,10 +46,18 @@ def attribute_table(sample_name, sample, all_sv_list, sorted_chromosome_list,fil
                 variant_count.append(sample.chr_list[chromosome].variants[variant])
             except KeyError:
                 variant_count.append('0')
+        try :
+            start_position = sample.chr_list[chromosome].start
+        except KeyError:
+            start_position='0'
+
+        try :
+            end_position = sample.chr_list[chromosome].end
+        except KeyError:
+            end_position='0'
 
         file.write("{}\t{}\t{}\t{}\n".format(chromosome, "\t".join(map(str,(variant_count))),
-                                             sample.chr_list[chromosome].start,
-                                             sample.chr_list[chromosome].end))
+                                             start_position,end_position))
 
 
 # receiving all samples
