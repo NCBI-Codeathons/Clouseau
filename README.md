@@ -21,3 +21,17 @@ The code is separated into two modules: Storage and Processing. This allows for 
 clouseau.py -derp
 ```
 
+## Output
+Output is a file names “sample”
+```
+CHROM	SV1	SV2	SVn	start	end
+ChrN  0 1 1 100
+ChrN+1 1  1 1 78  
+```
+
+Log file for gaps
+```
+Sample_name	gap_start gap_end
+Sample 1 	800	1000
+```
+
