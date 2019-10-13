@@ -40,8 +40,8 @@ def sorted_chromosome(all_samples):
 def attribute_table(sample_name, sample, all_sv_list, sorted_chromosome_list,file):
     header = "{}\t{}\t{}\t{}".format("chr", "\t".join(all_sv_list), "start", "end")
 
-    file.write(sample_name)
-    file.write(header)
+    file.write(sample_name+'\n')
+    file.write(header+'\n')
     for chromosome in sorted_chromosome_list:
         variant_count=[]
         for variant in all_sv_list:
@@ -50,7 +50,7 @@ def attribute_table(sample_name, sample, all_sv_list, sorted_chromosome_list,fil
             except KeyError:
                 variant_count.append(0)
 
-            file.write("{}\t{}\t{}\t{}".format(chromosome, "\t".join(variant_count),
+            file.write("{}\t{}\t{}\t{}\n".format(chromosome, "\t".join(variant_count),
                                           sample.chr_list[chromosome].start,
                                           sample.chr_list[chromosome].end))
 
