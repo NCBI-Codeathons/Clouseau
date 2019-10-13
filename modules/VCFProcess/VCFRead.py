@@ -109,4 +109,3 @@ def process_vcf(vcf_file):
 
 if __name__ == "__main__":
     process_vcf("./samples/new_test_10.vcf")
-
