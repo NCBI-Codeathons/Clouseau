@@ -83,9 +83,9 @@ def process_vcf(vcf_file):
     sample_names = []
     with open(vcf_file, 'r') as myfile:
         for line in myfile:
-            if line[1] == "#":
+            if line.startswith("##"):
                 pass
-            elif line[1] == "C": # if the header line
+            elif line[0] == "#": # if the header line
                 line_split = line.split()
                 sample_names = line_split[9:]
                 for sample in sample_names:
@@ -95,7 +95,9 @@ def process_vcf(vcf_file):
                 line_split = line.split()
                 chr = line_split[0]
                 pos = line_split[1]
-                sv = line_split[7].split(";")[8].split("=")[1]
+                sv = [i for i in line_split[7].split(";") if i.startswith("SVTYPE")][0]
+                sv = sv.split("=")[1]
+
                 all_sample_storage.add_new_chr(chr, pos, sv)
                 for sample, value in zip(sample_names, line_split[9:]):
                     if value != ".":
