@@ -78,8 +78,6 @@ from modules import Storage
 #         #     pass
 
 
-
-
 def process_vcf(vcf_file):
     all_sample_storage = Storage.AllSamples()
     sample_names = []
@@ -102,10 +100,9 @@ def process_vcf(vcf_file):
                 for sample, value in zip(sample_names, line_split[9:]):
                     if value != ".":
                         all_sample_storage[sample].add_new_chr(chr, pos, sv)
-
-
-
+    return all_sample_storage
 
 
 if __name__ == "__main__":
     process_vcf("./samples/new_test_10.vcf")
+
