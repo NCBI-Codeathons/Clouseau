@@ -4,32 +4,6 @@ import multiprocessing as  mp
 import os
 from .. import Storage
 
-all_sample_storage = Storage.AllSamples()
-sample_names = []
-
-def process(vcf_line):
-    line_split = vcf_line.split()
-    if vcf_line.statswith("#C"): # if it  is the header line
-        sample_names = line_split[9:]
-        # adding samples to allsamples object
-        for sample in sample_names:
-            # create object with sample name
-            all_sample_storage.add_new_sample(sample)
-
-    else: # sample already added now we are updating values
-        chr = line_split[0]
-        pos = line_split[1]
-        inf = line_split[7]
-        sv = inf.split(";")[8].split("=")[1] # Do a string match if SVTYPE not in 8th field
-        samples_values = line_split[9:]
-        all_sample_storage.add_new_chr(chr_name=chr, position=pos, variant=sv)
-        # get sample object by name
-        for sample_name, sample_value in zip(sample_names, samples_values):
-            # get sample object
-            sample_object = all_sample_storage[sample_name]
-            if sample_value != ".":
-                sample_object.add_new_chr(chr_name=chr, position=pos, variant=sv)
-
 
 class ReadVcf(object):
     """
@@ -38,6 +12,8 @@ class ReadVcf(object):
 
     def __init__(self, vcf_file):
         self.vcf_file = vcf_file
+        self.all_sample_storage = Storage.AllSamples()
+        self.sample_names = []
 
     @staticmethod
     def file_type(vcf_file):
@@ -49,7 +25,8 @@ class ReadVcf(object):
             f.seek(chunkStart)
             lines = f.read(chunkSize).splitlines()
             for line in lines:
-                print(line)
+                print("pro")
+                self.process_vcf(line)
 
     def chunkify(self, size=1024*1024):
         fileEnd = os.path.getsize(self.vcf_file)
@@ -64,7 +41,7 @@ class ReadVcf(object):
                 if chunkEnd > fileEnd:
                     break
 
-    def read_file(self, cores=mp.cpu_count()):
+    def read_file(self, cores=1):
         pool = mp.Pool(cores)
         jobs = []
 
@@ -78,3 +55,20 @@ class ReadVcf(object):
 
         #clean up
         pool.close()
+
+    def process_vcf(self, vcf_line):
+        vcf_line = vcf_line.decode("utf-8")
+        line_split = vcf_line.split()
+        if vcf_line.startswith("##"):
+            pass
+        elif vcf_line.startswith("#C"): # if it  is the header line
+            print(vcf_line)
+            sample_names = line_split[9:]
+            print(sample_names)
+            self.sample_names = sample_names
+
+
+            # adding samples to allsamples object
+            for sample in sample_names:
+                # create object with sample name
+                self.all_sample_storage.add_new_sample(sample)
